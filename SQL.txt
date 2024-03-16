@@ -1,0 +1,68 @@
+Задание 1
+
+CREATE TABLE `first_db`.`students` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `student_name` VARCHAR(100) NOT NULL,
+  `student_surname` VARCHAR(100) NOT NULL,
+  `student_birthdate` DATE NOT NULL,
+  `student_gpa` DECIMAL UNSIGNED NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+Задание 2
+
+CREATE TABLE `first_db`.`books` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `book_name` VARCHAR(100) NOT NULL,
+  `book_author` VARCHAR(100) NOT NULL,
+  `year_of_publication` SMALLINT(4) UNSIGNED NOT NULL,
+  `book_genre` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+Задание 3
+
+INSERT INTO `first_db`.`books` (`book_name`, `book_author`, `year_of_publication`, `book_genre`) VALUES ('Повелитель мух', 'Уильям Голдинг', '1954', 'Роман');
+
+Задание 4
+
+
+UPDATE first_db.products SET `price` = `price` * 1.1 WHERE (`price` < 1000);
+
+Задание 5
+
+SELECT product_name, price FROM first_db.products ORDER BY price DESC LIMIT 3;
+
+Задание 6
+
+DELETE FROM first_db.employees where (`department_id` = 3);
+
+Задание 7
+
+ALTER TABLE `first_db`.`students` 
+ADD CONSTRAINT `courses_fk`
+  FOREIGN KEY (`courses_id`)
+  REFERENCES `first_db`.`courses` (`course_id`)
+  ON DELETE CASCADE
+  ON UPDATE NO ACTION;
+
+Задание 8
+
+SELECT department_name, COUNT(employee_name) AS 'employee_count'
+    FROM first_db.employees aa
+    JOIN first_db.departments bb ON bb.department_id=aa.department_id
+    GROUP BY department_name
+
+Задание 9
+
+SELECT student_name, group_name AS group_name
+    FROM first_db.students aaa
+    JOIN first_db.groups bbb ON bbb.group_id=aaa.group_id
+
+Задание 10
+
+SELECT book_title, author_name AS author_name
+    FROM first_db.books_new aaaa
+    JOIN first_db.authors bbbb ON bbbb.author_id=aaaa.author_id
